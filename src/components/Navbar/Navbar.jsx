@@ -82,7 +82,7 @@ const Navbar = ({ cartList, setCartList }) => {
   return (
     <div className={styles.Navbar} onClick={(e) => console.log(e)}>
       <ul>
-        <li onClick={() => console.log("ciao")}>
+        <li onClick={() => router.push("/")}>
           <Image src={logo} className={styles.Navbar_logo} />
         </li>
         <li className={styles.Navbar_user}>
@@ -90,7 +90,9 @@ const Navbar = ({ cartList, setCartList }) => {
           {loggedUser && (
             <Cart
               className={styles.cart}
-              onClick={() => {onCartClick();}}
+              onClick={() => {
+                onCartClick();
+              }}
             />
           )}
           {loggedUser && cartList.length > 0 && (

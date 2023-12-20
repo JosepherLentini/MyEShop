@@ -10,7 +10,8 @@ import { UserContext, initialUserState } from "@/global state/products-state";
 //firebase
 import { db, auth } from "@/firebase";
 import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
-
+//
+import { useRouter } from "next/router";
 
 
 const Card = ({
@@ -19,9 +20,7 @@ const Card = ({
 }) => {
   const [rotateCard, setRotateCard] = useState(false);
 
-  //global state
-  const { state, dispatch } = useContext(UserContext);
-  const starRef = useRef(0);
+  const router = useRouter();
 
   const percentRating = (rate) => {
     let rating = 100 - rate * 20;
@@ -65,7 +64,7 @@ const Card = ({
   }, []);
 
   return (
-    <div className={styles.Card_wrapper}>
+    <div className={styles.Card_wrapper} onClick={() => router.push(`/product/${data.id}`)}>
       <div className={`${styles.Card} ${rotateCard && styles.rotate_card}`}>
         <div className={styles.front}>
           <div className={styles.Card_image}>

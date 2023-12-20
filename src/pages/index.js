@@ -7,7 +7,8 @@ import Products from "@/components/Products";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Info from "@/components/Info";
-
+// layouts
+import NavbarLayout from "@/layouts/NavbarLayout";
 // firebase
 import { db } from "@/firebase";
 import { doc, getDoc, } from "firebase/firestore";
@@ -48,8 +49,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Navbar cartList={cartList} setCartList={setCartList} />
+      {/* <Navbar cartList={cartList} setCartList={setCartList} /> */}
+      <NavbarLayout cartList={cartList} setCartList={setCartList} />
       <Hero />
       <Info />
       <Products
