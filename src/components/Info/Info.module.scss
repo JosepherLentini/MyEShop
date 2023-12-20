@@ -1,0 +1,265 @@
+// .Info {
+//   width: 100%;
+//   height: 90vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin-bottom: 30px;
+
+//   h2 {
+//     height: 10vh;
+//     @include flexCenter(0);
+//     text-transform: uppercase;
+//     letter-spacing: 20px;
+//     font-size: 28px;
+//     color: $color-dark;
+//   }
+
+//   &_box {
+//     width: 70vw;
+//     height: 80vh;
+//     display: flex;
+//     gap: 20px;
+
+//     .Info_box_left,
+//     .Info_box_right {
+//       width: 50%;
+//       height: 100%;
+//       display: flex;
+//       flex-direction: column;
+//       gap: 20px;
+
+//       .infoBox_up {
+//         width: 100%;
+//         height: 40%;
+//         background-size: cover;
+//         background-repeat: no-repeat;
+//       }
+
+//       .infoBox_down {
+//         width: 100%;
+//         height: 60%;
+//         background-size: cover;
+//         background-repeat: no-repeat;
+//       }
+
+//       .infoBox_overlay {
+//         width: 100%;
+//         height: 100%;
+//         background-color: rgba(0, 0, 0, 0.237);
+//         @include flexCenter(0);
+//         text-transform: uppercase;
+//         font-size: 24px;
+//         font-weight: 700;
+//         color: $color-white;
+//       }
+//     }
+
+//     .Info_box_left {
+//       .infoBox_up {
+//         background-image: url("https://img.freepik.com/free-photo/golden-easter-eggs-by-easter-decorations_1303-30816.jpg?size=626&ext=jpg&uid=R127865836&ga=GA1.1.1475726045.1700689510&semt=ais");
+//       }
+
+//       .infoBox_down {
+//         background-image: url("https://img.freepik.com/free-photo/handsome-man-putting-his-jacket_23-2148448923.jpg?size=626&ext=jpg&uid=R127865836&ga=GA1.1.1475726045.1700689510&semt=ais");
+//       }
+//     }
+
+//     .Info_box_right {
+//       flex-direction: column-reverse;
+
+//       .infoBox_up {
+//         background-image: url("https://img.freepik.com/free-photo/laptop_23-2148155405.jpg?size=626&ext=jpg&uid=R127865836&ga=GA1.1.1475726045.1700689510&semt=ais");
+//       }
+
+//       .infoBox_down {
+//         background-image: url("https://img.freepik.com/free-photo/fashion-portrait-young-elegant-woman_1328-2743.jpg?size=626&ext=jpg&uid=R127865836&ga=GA1.1.1475726045.1700689510&semt=ais");
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 1280px) {
+//   .Info {
+//     &_box {
+//       width: 80vw;
+//       height: 70vh;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 1024px) {
+//   .Info {
+//     &_box {
+//       width: 90vw;
+//       height: 70vh;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 768px) {
+//   .Info {
+//     height: 60vh;
+
+//     h2{
+//       font-size: 22px;
+//     }
+//     &_box {
+//       width: 90vw;
+//       height: 50vh;
+//       gap: 15px;
+//       .Info_box_left,
+//       .Info_box_right {
+//         gap: 15px;
+//         .infoBox_overlay {
+//           font-size: 18px;
+
+//         }
+//       }
+//     }
+//   }
+// }
+
+.Info {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  h2 {
+    height: 10vh;
+    @include flexCenter(0);
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    font-size: 28px;
+    color: $color-dark;
+    text-align: center;
+  }
+
+  &_wrapper {
+    width: 70vw;
+    height: 80vh;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+  }
+
+  &_box {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &:last-child {
+      flex-direction: column-reverse;
+    }
+
+    &_bg {
+      height: 40%;
+      background-size: cover;
+      &:last-child {
+        height: 60%;
+      }
+
+      .Info_overlay {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.237);
+        @include flexCenter(0);
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1026px){
+  .Info {
+    h2 {
+      letter-spacing: 18px;
+      font-size: 24px;
+    }
+
+    &_wrapper {
+      width: 80vw;
+      height: 75vh;
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    
+
+      .Info_overlay {
+        text-transform: uppercase;
+        font-size: 20px;
+        color: $color-white;
+        
+      }
+    }
+}
+
+@media screen and (max-width: 769px) {
+  .Info {
+    h2 {
+      letter-spacing: 18px;
+      font-size: 24px;
+    }
+
+    &_wrapper {
+      width: 90vw;
+      height: 62vh;
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    
+
+      .Info_overlay {
+        text-transform: uppercase;
+        font-size: 20px;
+        color: $color-white;
+        
+      }
+    }
+ 
+}
+
+@media screen and (max-width: 426px){
+  .Info {
+    h2 {
+      letter-spacing: 10px;
+      font-size: 18px;
+    }
+
+    &_wrapper {
+      width: 100vw;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    &_box{
+      width: 100%;
+
+    }
+    
+
+      .Info_overlay {
+        text-transform: uppercase;
+        font-size: 20px;
+        color: $color-white;
+        
+      }
+    }
+}

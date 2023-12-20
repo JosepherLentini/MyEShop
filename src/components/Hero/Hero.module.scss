@@ -1,0 +1,107 @@
+.Hero {
+  width: 100%;
+  max-width: 1920px;
+  height: 60vh;
+  margin-top: 70px;
+  position: relative;
+  // background: rgb(114, 62, 49);
+  // background: linear-gradient(
+  //   14deg,
+  //   rgba(114, 62, 49, 1) 41%,
+  //   rgba(166, 117, 100, 1) 92%
+  // );
+  &_bg,
+  &_bgMobile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &_bgMobile {
+    display: none;
+  }
+
+  &_Wrapper,
+  &_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  &_text {
+    width: 50%;
+    height: 100%;
+    @include flexCenter(0);
+
+    &_paragraph {
+      width: 70%;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 22px;
+      line-height: 34px;
+      font-weight: 500;
+      color: $color-white;
+    }
+  }
+
+  &_overlay {
+    background-color: #723e3193;
+  }
+}
+
+@media screen and (max-width: 1024px){
+   .Hero {
+    &_text {
+ 
+
+      &_paragraph {
+        
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Hero {
+    &_text {
+ 
+
+      &_paragraph {
+        width: 80%;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .Hero {
+    margin-top: 50px;
+    width: 100%;
+    height: 80vh;
+
+    &_bgMobile {
+      display: block;
+      object-fit: cover;
+    }
+
+    &_bg {
+      display: none;
+    }
+
+    &_text {
+      width: 100%;
+      height: 50%;
+
+      &_paragraph {
+        width: 65%;
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
+}

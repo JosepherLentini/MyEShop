@@ -1,0 +1,325 @@
+.Login {
+  width: 100%;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &_swipe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60%;
+    background-color: $color-secondary;
+    z-index: 15;
+    transition: all 0.7s ease-in;
+
+    .welcomeText {
+      width: 100%;
+      height: 100%;
+      @include flexCenter(20px);
+      flex-direction: column;
+
+      p,
+      h1 {
+        color: $color-white;
+        font-size: 28px;
+      }
+      p {
+        font-size: 18px;
+        text-align: center
+            }
+    }
+
+    .swipeLinks {
+      @include flexAlignCenter(0);
+      margin-top: 20px;
+      .swipeBtn {
+        height: 30px;
+        width: 120px;
+        background-color: transparent;
+        border: none;
+        color: $color-dark;
+        text-decoration: underline;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.35s ease-in-out;
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+
+      p {
+        color: $color-dark;
+        font-size: 14px;
+        font-style: italic;
+      }
+
+      .swipeBtnLight {
+        color: $color-dark;
+        transition: all 0.35s ease-in-out;
+        &:hover {
+          color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  .showSign {
+    background-color: $color-primary;
+    left: 40vw;
+  }
+
+  .sign_container,
+  .log_container {
+    width: 40%;
+    height: 100%;
+    @include flexCenter(0);
+    z-index: 10;
+  }
+
+  .sign_container {
+    background-color: $color-white;
+    position: relative;
+    
+    
+  }
+
+  .log_container {
+    background-color: $color-primary;
+  }
+
+  .sign,
+  .log {
+    width: 25vw;
+    height: 100%;
+    @include flexCenter(15px);
+    flex-direction: column;
+    transition: all 0.5s ease-in;
+
+    label {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: $color-dark;
+    }
+
+    input {
+      width: 80%;
+      height: 30px;
+      border: none;
+      outline: none;
+      &::placeholder {
+        color: $color-secondary;
+      }
+    }
+  }
+
+  .sign {
+    background-color: $color-white;
+    input {
+      border-bottom: 2px solid $color-secondary;
+      background-color: $color-white;
+    }
+
+    .signSubmit {
+      margin-top: 20px;
+      width: 70%;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+      border: 2px solid $color-grey;
+      background-color: $color-white;
+      color: $color-dark;
+      transition: all 0.35s ease;
+      &:hover {
+        background-color: $color-grey;
+      }
+    }
+  }
+
+  .log {
+    background-color: $color-primary;
+    input {
+      background-color: $color-primary;
+      border-bottom: 2px solid $color-dark;
+    }
+
+    .logSubmit {
+      margin-top: 20px;
+      width: 70%;
+      border: none;
+      background-color: $color-secondary;
+      border: 2px solid $color-dark;
+      color: $color-white;
+      &:hover {
+        background-color: $color-dark;
+      }
+    }
+  }
+
+  .mobileSwitch {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 400;
+    transform: translateX(-50%);
+    @include flexCenter(10px);
+    display: none;
+    p {
+      color: $color-dark;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      color: $color-dark;
+      text-decoration: underline;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:active {
+        color: $color-primary;
+      }
+    }
+  }
+
+  .signShowHidden {
+    transform: translateX(-100%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .logShowHidden {
+    transform: translateX(100%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+ 
+}
+
+@media screen and (max-width: 769px) {
+  .Login {
+    overflow-x: hidden;
+    &_swipe {
+      width: 50%;
+
+      .welcomeText {
+      width: 100%;
+      height: 100%;
+      @include flexCenter(15px);
+      flex-direction: column;
+
+      
+      h1 {
+        font-size: 22px;
+        
+      }
+      p {
+        font-size: 14px;
+        width: 80%;
+        
+      }
+    }
+
+    .swipeLinks {
+      @include flexAlignCenter(0);
+      flex-direction: column;
+      width: 80%;
+
+      .swipeBtnLight {
+        color: $color-dark;
+        transition: all 0.35s ease-in-out;
+        &:hover {
+          color: $color-secondary;
+        }
+      }
+    }
+    }  
+
+    
+  }
+
+  .showSign {
+    transform: translateX(20%);
+  }
+
+  .log_container {
+    width: 50%;
+    flex-basis: 50%;
+    flex-shrink: 0;
+
+    .log {
+      width: 100%;
+    }
+  }
+
+  .sign_container {
+    width: 50%;
+    flex-basis: 50%;
+    flex-shrink: 0;
+    .sign {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .Login {
+    height: calc(100vh - 50px);
+    &_swipe {
+      display: none;
+    }
+    .log_container {
+      width: 100%;
+      flex-basis: 100%;
+      flex-shrink: 0;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .sign_container {
+      width: 100%;
+      flex-basis: 100%;
+      flex-shrink: 0;
+      .sign {
+        width: 100%;
+      }
+    }
+
+    .signShowHidden {
+      transform: translateX(0);
+      opacity: 100%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .logShowHidden {
+      transform: translateX(0);
+      opacity: 100%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mobileSwitch {
+      display: flex;
+    }
+  }
+
+  .LoginSwipe {
+    transform: translateX(-100%);
+  }
+}

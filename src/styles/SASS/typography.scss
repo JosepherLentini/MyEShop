@@ -1,0 +1,29 @@
+%price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+%cardTitle{
+   font-size: 18px;
+   font-weight: 500;
+   
+}
+
+%cardDescription{
+  font-size: 16px;
+  &::first-letter{
+    text-transform: uppercase ;
+  }
+}
+
+%heroSlogan{
+  font-size: 34px;
+  text-align: center;
+  color: $color-white;
+  font-weight: 700;
+  width: 600px;
+  position: absolute;
+  top: 200px;
+  left: 80px;
+
+}

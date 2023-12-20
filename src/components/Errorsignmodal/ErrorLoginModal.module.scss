@@ -1,0 +1,15 @@
+.ErrorLoginModal{
+      position: absolute;
+      top: 80px;
+      @include flexCenter(10px);
+      flex-direction: column;
+    padding: 10px;
+      p{
+        color: $color-red;
+      }
+
+     
+    }
+     .colorLogIn{
+        background-color: $color-white;
+      }

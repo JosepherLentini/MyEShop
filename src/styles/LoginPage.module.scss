@@ -1,0 +1,25 @@
+.Login_navbar {
+  width: 100%;
+  max-width: 1920px;
+  height: 70px;
+  @include flexAlignCenter(0);
+  background-color: $color-primary;
+  padding: 15px 20px;
+  z-index: 20;
+  .Login_logo {
+    width: 180px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .Login_navbar {
+    height: 50px;
+    padding: 0px 10px;
+    .Login_logo {
+      width: 120px;
+      height: 30px;
+    }
+  }
+}
