@@ -1,13 +1,13 @@
 import styles from "./Card.module.scss";
+//hooks
 import { useState, useEffect, useRef, useContext } from "react";
-//icon
-import WLempty from "@/Icons/WLempty";
-import Star from "@/Icons/Star";
+//next
+import Image from "next/image";
 //global state settings
 import { useReducer } from "react";
 import { userReducer } from "@/global state/reducers";
 import { UserContext, initialUserState } from "@/global state/products-state";
-//
+//firebase
 import { db, auth } from "@/firebase";
 import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
 
@@ -69,7 +69,7 @@ const Card = ({
       <div className={`${styles.Card} ${rotateCard && styles.rotate_card}`}>
         <div className={styles.front}>
           <div className={styles.Card_image}>
-            <img src={data.image}></img>
+            <img src={data.image} alt="Card image"></img>
           </div>
           <div className={styles.Card_title}>
             <h3>{data.title.slice(0, 11)}</h3>
