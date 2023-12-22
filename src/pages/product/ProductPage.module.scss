@@ -1,0 +1,67 @@
+.ProductPage {
+  margin-top: 70px;
+  width: 100%;
+  max-width: 1920px;
+  height: calc(100vh - 70px);
+  padding: 100px;
+  @include flexCenter(0);
+  background-color: $color-white;
+
+  &_wrapper {
+    width: 100%;
+    height: 50vh;
+    @include flexCenter(50px);
+  }
+
+  &_image {
+    width: 25%;
+    height: 100%;
+    padding: 10px;
+    background-color: white;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &_text {
+    height: 100%;
+    width: 50%;
+    @include flexJustifyCenter(15px);
+    flex-direction: column;
+
+    h2 {
+      color: $color-dark;
+    }
+
+    &_price {
+      color: $color-secondary;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &_description {
+      width: 70%;
+      height: 100%;
+      color: $color-secondary;
+    }
+
+    button {
+      width: 120px;
+      height: 40px;
+      border: 2px solid $color-secondary;
+      background-color: $color-white;
+      color: $color-secondary;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 500;
+
+      &:hover {
+        border: 2px solid $color-dark;
+        
+        color: $color-dark;
+      }
+    }
+  }
+}

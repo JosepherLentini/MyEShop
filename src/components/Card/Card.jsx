@@ -13,18 +13,35 @@ import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
 //
 import { useRouter } from "next/router";
 
-
-const Card = ({
-  data,
-  setNoLoggedMessage,
-}) => {
+const Card = ({ data, setNoLoggedMessage }) => {
   const [rotateCard, setRotateCard] = useState(false);
 
   const router = useRouter();
+  const seeMoreRef = useRef(null);
+  const seeLessRef = useRef(null);
+  const cardWrapperRef = useRef(null);
+  const addToCardRef = useRef(null);
 
   const percentRating = (rate) => {
     let rating = 100 - rate * 20;
     return rating.toString() + "%";
+  };
+
+  const onRotateClick = (e, ref) => {
+    if (e.target == ref) {
+      setRotateCard((prev) => !prev);
+    }
+  };
+
+  const goToProductPage = (e, ref1, ref2, ref3) => {
+    if (
+      e.target !== ref1.current &&
+      e.target !== ref2.current &&
+      e.target !== ref3.current
+    ) {
+      router.push(`/product/${data.id}`);
+    } else {
+    }
   };
 
   const addItemToDb = async (el) => {
@@ -55,16 +72,18 @@ const Card = ({
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
-      setNoLoggedMessage(true)
+      setNoLoggedMessage(true);
     }
   };
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <div className={styles.Card_wrapper} onClick={() => router.push(`/product/${data.id}`)}>
+    <div
+      className={styles.Card_wrapper}
+      ref={cardWrapperRef}
+      onClick={(e) => goToProductPage(e, seeMoreRef, seeLessRef, addToCardRef)}
+    >
       <div className={`${styles.Card} ${rotateCard && styles.rotate_card}`}>
         <div className={styles.front}>
           <div className={styles.Card_image}>
@@ -77,13 +96,18 @@ const Card = ({
           <div className={styles.Card_buttons}>
             <button
               className={`${styles.Card_button} ${styles.addToCart}`}
+              ref={addToCardRef}
               onClick={() => addItemToDb(data)}
             >
               Add to cart
             </button>
             <button
               className={`${styles.Card_button} ${styles.seeMore}`}
-              onClick={() => setRotateCard((prev) => !prev)}
+              ref={seeMoreRef}
+              onClick={(e) => {
+                // console.log(e.target, seeMoreRef);
+                onRotateClick(e, seeMoreRef.current);
+              }}
             >
               See more
             </button>
@@ -96,13 +120,15 @@ const Card = ({
           <div className={styles.Card_buttons}>
             <button
               className={styles.addToCart}
-              onClick={() => addItemToCart()}
+              ref={addToCardRef}
+              onClick={() => addItemToDb(data)}
             >
               Add to cart
             </button>
             <button
               className={`${styles.Card_button} ${styles.seeLess}`}
-              onClick={() => setRotateCard((prev) => !prev)}
+              ref={seeLessRef}
+              onClick={(e) => onRotateClick(e, seeLessRef.current)}
             >
               See less
             </button>
@@ -115,14 +141,3 @@ const Card = ({
 
 export default Card;
 
-//  {
-//    items.length > 0
-//      ? items.map((el) => <div className="">{el.id + "-" + " " + el.title}</div>)
-//      : data.map((el) => <div className="">{el.id + "-" + " " + el.title}</div>);
-//  }
-
-// {
-//   items.length > 0
-//     ? items.map((el) => <div className="">{el.id + "-" + " " + el.price}</div>)
-//     : data.map((el) => <div className="">{el.id + "-" + " " + el.price}</div>);
-// }

@@ -30,6 +30,7 @@
       border-radius: 5px;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
+  
     }
 
     .front {
@@ -37,6 +38,7 @@
       height: 100%;
       backface-visibility: hidden;
       padding: 10px;
+   
     }
 
     .back {
@@ -51,6 +53,7 @@
       padding: 10px;
       @include flexJustifyBetween(10px);
       flex-direction: column;
+
     }
 
     &_image {
@@ -88,7 +91,7 @@
       height: 20%;
       @include flexJustifyBetween(8px);
       align-items: center;
-
+    
       button {
         padding: 5px 8px;
         width: 50%;
@@ -103,6 +106,7 @@
         &:last-child {
           border: 2px solid $color-primary;
           color: $color-primary;
+         
           &:hover, &:active {
             border: 2px solid $color-dark;
             color: $color-dark;
@@ -113,8 +117,7 @@
           border: none;
           background-color: $color-primary;
           color: $color-white;
-
-          &:hover {
+           z-index: 50;    &:hover {
             background-color: $color-dark;
           }
         }
@@ -126,7 +129,7 @@
 .rotate_card {
   transform: rotateY(180deg);
 }
-
+                                          
 
 @media screen and (max-width: 426px){
   .Card_wrapper{
