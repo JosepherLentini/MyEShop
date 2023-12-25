@@ -34,12 +34,16 @@ const Card = ({ data, setNoLoggedMessage }) => {
   };
 
   const goToProductPage = (e, ref1, ref2, ref3) => {
+
+
+
     if (
-      e.target !== ref1.current &&
-      e.target !== ref2.current &&
-      e.target !== ref3.current
+      e.target.innerText.toLowerCase() !== ref1.current.innerText.toLowerCase()  &&
+      e.target.innerText.toLowerCase() !== ref2.current.innerText.toLowerCase()  &&
+      e.target.innerText.toLowerCase() !== ref3.current.innerText.toLowerCase()
     ) {
       router.push(`/product/${data.id}`);
+      console.log("beppe")
     } else {
     }
   };
@@ -105,7 +109,6 @@ const Card = ({ data, setNoLoggedMessage }) => {
               className={`${styles.Card_button} ${styles.seeMore}`}
               ref={seeMoreRef}
               onClick={(e) => {
-                // console.log(e.target, seeMoreRef);
                 onRotateClick(e, seeMoreRef.current);
               }}
             >
