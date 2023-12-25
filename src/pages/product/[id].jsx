@@ -20,7 +20,9 @@ const ProductPage = () => {
 
   let router = useRouter();
 
-    const addItemToDb = async () => {
+    const addItemToDb = async (el) => {
+
+      
       let uuid = localStorage.getItem("user");
 
       const docRef = doc(db, "cart", `${uuid}`);
@@ -74,9 +76,7 @@ const ProductPage = () => {
       if (docSnap.exists()) {
         let cL = docSnap.data().cart;
         setCartList(cL);
-      } else {
-        // console.log("No such document!");
-      }
+      } 
     } 
     addCart();
   }, [cartList]);
@@ -95,7 +95,7 @@ const ProductPage = () => {
             <p className={styles.ProductPage_text_description}>
               {product.description}
             </p>
-            <button onClick={() => addItemToDb()}>Add to cart</button>
+            <button onClick={() => addItemToDb(product)}>Add to cart</button>
           </div>
         </div>
       </div>
