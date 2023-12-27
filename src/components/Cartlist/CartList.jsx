@@ -17,7 +17,7 @@ const CartList = ({ cartList, setCartList, toggleCart, setToggleCart }) => {
         ))}
       </div>
       <div className={styles.Cartlist_buttons}>
-        <button>Go to cart</button>
+        {/* <button>Go to cart</button> */}
         <button onClick={() => setToggleCart(true)}>Close</button>
       </div>
     </div>

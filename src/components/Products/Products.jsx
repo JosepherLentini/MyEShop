@@ -3,6 +3,7 @@ import styles from "./Products.module.scss";
 //components
 import Card from "../Card";
 import Filter from "../Filter";
+import LoggedMessage from "../LoggedMessage/LoggedMessage";
 //hooks
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -41,18 +42,7 @@ const Products = ({
     <>
       <div className={styles.Products}>
         {noLoggedMessage && (
-          <div className={styles.bo} onClick={() => setNoLoggedMessage(false)}>
-            <div className={styles.loginMessage}>
-              <button className={styles.loginMessage_close}>x</button>
-              <p>You must log in!</p>
-              <button
-                className={styles.loginMessage_button}
-                onClick={() => router.push("/login/log")}
-              >
-                LogIn
-              </button>
-            </div>
-          </div>
+          <LoggedMessage setNoLoggedMessage={setNoLoggedMessage} />
         )}
         <Filter
           data={data}
@@ -69,7 +59,6 @@ const Products = ({
               <Card
                 data={item}
                 key={item.id}
-                
                 noLoggedMessage={noLoggedMessage}
                 setNoLoggedMessage={setNoLoggedMessage}
               />
