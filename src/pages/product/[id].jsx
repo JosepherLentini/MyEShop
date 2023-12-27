@@ -11,10 +11,13 @@ import { db, auth } from "@/firebase";
 import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
 //styles
 import styles from "./ProductPage.module.scss";
+//components
+import LoggedMessage from "@/components/LoggedMessage/LoggedMessage";
 
 const ProductPage = () => {
   const [cartList, setCartList] = useState([]);
   const [product, setProduct] = useState({});
+  const [noLoggedMessage, setNoLoggedMessage] = useState(false);
   const [query, setQuery] = useState(null);
   const params = useParams();
 
@@ -85,6 +88,9 @@ const ProductPage = () => {
     <>
       <NavbarLayout cartList={cartList} setCartList={setCartList} />
       <div className={styles.ProductPage}>
+        {
+          noLoggedMessage && <LoggedMessage setNoLoggedMessage={setNoLoggedMessage} />
+        }
         <div className={styles.ProductPage_wrapper}>
           <div className={styles.ProductPage_image}>
             <img src={product.image} alt={product.title} />

@@ -80,7 +80,7 @@ const Card = ({ data, setNoLoggedMessage }) => {
     }
   };
 
-  useEffect(() => {}, []);
+  
 
   return (
     <div

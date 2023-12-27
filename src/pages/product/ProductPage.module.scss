@@ -42,7 +42,7 @@
     }
 
     &_description {
-      width: 70%;
+      width: 100%;
       height: 100%;
       color: $color-secondary;
     }
@@ -59,8 +59,112 @@
 
       &:hover {
         border: 2px solid $color-dark;
-        
+
         color: $color-dark;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .ProductPage {
+    padding: 60px;
+
+    &_image {
+      width: 30%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .ProductPage {
+    padding: 60px;
+
+    &_wrapper {
+      height: 40vh;
+    }
+    &_image {
+      width: 35%;
+    }
+
+    &_text {
+      width: 65%;
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .ProductPage {
+    padding: 15px 40px;
+
+    &_wrapper {
+      height: 100%;
+      flex-direction: column;
+      gap: 20px;
+    }
+    &_image {
+      width: 35%;
+      height: 40%;
+      img {
+      }
+    }
+
+    &_text {
+      width: 100%;
+      height: 60%;
+      gap: 10px;
+      h2 {
+        font-size: 20px;
+      }
+
+      &_price,
+      &_description {
+        font-size: 14px;
+      }
+
+      button {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .ProductPage {
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    padding: 20px 30px;
+
+    &_wrapper {
+      height: 100%;
+      flex-direction: column;
+      gap: 20px;
+    }
+    &_image {
+      width: 70%;
+      height: 35%;
+      img {
+      }
+    }
+
+    &_text {
+      width: 100%;
+      height: 65%;
+
+      h2 {
+        font-size: 18px;
+      }
+
+      &_price {
+        font-size: 14px;
+      }
+
+      &_description {
+        font-size: 14px;
+      }
+
+      button {
+        margin: 0 auto;
       }
     }
   }
