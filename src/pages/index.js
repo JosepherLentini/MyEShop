@@ -22,6 +22,7 @@ export default function Home() {
   const [show, setShow] = useState(4);
 
 
+
   useEffect(() => {
     const addCart = async () => {
       let uuid = localStorage.getItem("user");

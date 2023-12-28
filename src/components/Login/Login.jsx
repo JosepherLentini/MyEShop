@@ -143,7 +143,7 @@ const Login = () => {
             <input
               type="text"
               name=""
-              id=""
+              id="signup_email"
               placeholder="Email"
               value={newEmail}
               className={styles.sign_input}
@@ -152,7 +152,7 @@ const Login = () => {
             <input
               type="password"
               name=""
-              id=""
+              id="signup_password"
               placeholder="Password"
               value={newPassword}
               className={styles.sign_input}
@@ -176,22 +176,22 @@ const Login = () => {
             <input
               type="text"
               name=""
-              id=""
+              id="login_email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} 
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               name=""
-              id=""
+              id="login_password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <input type="submit" value="Log-in" className={styles.logSubmit} />
           </form>
-          {errorSignModal && <ErrorLoginModal logInSide/>}
+          {errorSignModal && <ErrorLoginModal logInSide />}
         </div>
         <div className={styles.mobileSwitch}>
           <p>If you {toggleLogin ? "don't have" : "have"} an account </p>

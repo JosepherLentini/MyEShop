@@ -1,20 +1,21 @@
 import styles from "./Navbar.module.scss";
-import { UserContext, initialUserState } from "@/global state/products-state";
 //components
 import CartList from "../Cartlist";
-//
+//files
 import Image from "next/image";
 import logo from "../../../public/Images/logo-myeshop.png";
 // icons
 import Cart from "@/Icons/Cart";
 import User from "@/Icons/User";
 //hooks
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+//next
+import Link from "next/link";
 //firebase
 import { db, auth } from "@/firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
+import { doc, getDoc} from "firebase/firestore";
 
 const Navbar = ({ cartList, setCartList }) => {
   const [toggleCart, setToggleCart] = useState(true);
@@ -42,48 +43,42 @@ const Navbar = ({ cartList, setCartList }) => {
       let ob;
 
       if (docSnap.exists()) {
-       
         setLoggedUser(true);
         setUserName(docSnap.data().name);
       } else {
         setLoggedUser(false);
-        setUserLoggedModal(false)
+        setUserLoggedModal(false);
       }
     };
 
     onAuthStateChanged(auth, (us) => {
       if (us) {
-    
-         userExists();
+        userExists();
       } else {
         localStorage.removeItem("user");
         setLoggedUser(false);
         setUserLoggedModal(false);
       }
     });
-
-   
   }, []);
 
   const onUserClick = () => {
     setUserLoggedModal((prev) => !prev);
 
     !toggleCart && setToggleCart(true);
-      
-  
-  }
+  };
 
   const onCartClick = () => {
     setToggleCart((prev) => !prev);
 
-    userLoggedModal && setUserLoggedModal(false)
-  }
- 
+    userLoggedModal && setUserLoggedModal(false);
+  };
+
   return (
     <div className={styles.Navbar} onClick={(e) => console.log(e)}>
       <ul>
         <li onClick={() => router.push("/")}>
-          <Image src={logo} className={styles.Navbar_logo} />
+          <Image src={logo} alt="MyeShop__logo" className={styles.Navbar_logo} />
         </li>
         <li className={styles.Navbar_user}>
           <User className={styles.user} onClick={() => onUserClick()} />
@@ -118,13 +113,7 @@ const Navbar = ({ cartList, setCartList }) => {
           ) : (
             <div className={styles.userModal_noLogged}>
               <p>Hi, join us!</p>
-              <button
-                onClick={() => {
-                  router.push("/login/log");
-                }}
-              >
-                Log In
-              </button>
+              <Link className={styles.loginButton} href="/login">Log In</Link>
             </div>
           )}
         </div>
