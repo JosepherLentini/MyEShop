@@ -88,9 +88,11 @@
         text-align: center;
       }
 
-      button {
+      .loginButton, button {
         @include buttonStyle-1;
       }
+
+     
     }
 
     &_noLogged {

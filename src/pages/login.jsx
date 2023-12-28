@@ -4,8 +4,9 @@ import Head from "next/head";
 // component
 import Login from "@/components/Login";
 
-import styles from "../../styles/LoginPage.module.scss"
-import logo from "../../../public/Images/logo-myeshop.png";
+import styles from "../styles/LoginPage.module.scss"
+import logo from "../../public/Images/logo-myeshop.png";
+
 
 const LogIn = () => {
 

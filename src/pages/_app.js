@@ -7,7 +7,6 @@ import { useReducer } from "react";
 
 import DefaultLayout from "@/layouts/defaultLayout";
 
-
 export default function App({ Component, pageProps }) {
   const [state, dispatch] = useReducer(userReducer, initialUserState);
 

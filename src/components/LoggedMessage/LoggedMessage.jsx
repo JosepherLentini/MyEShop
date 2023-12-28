@@ -1,6 +1,8 @@
 import styles from "./LoggedMessage.module.scss";
 //hooks
 import { useRouter } from "next/router";
+//next
+import Link from "next/link";
 
 const LoggedMessage = ({ setNoLoggedMessage }) => {
   let router = useRouter();
@@ -12,12 +14,7 @@ const LoggedMessage = ({ setNoLoggedMessage }) => {
       <div className={styles.LoggedMessage}>
         <button className={styles.LoggedMessage_close}>x</button>
         <p>You must log in!</p>
-        <button
-          className={styles.LoggedMessage_button}
-          onClick={() => router.push("/login/log")}
-        >
-          LogIn
-        </button>
+        <Link href="/login" className={styles.LoggedMessage_button}>LogIn</Link>
       </div>
     </div>
   );
