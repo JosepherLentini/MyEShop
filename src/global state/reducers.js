@@ -14,11 +14,7 @@ export const userReducer = (state, action) => {
         ...state,
         cart: action.payload.cart,
       };
-      case "test":
-        return{
-          id: action.payload.id,
-        }
-
+     
     default:
       return state;
   }

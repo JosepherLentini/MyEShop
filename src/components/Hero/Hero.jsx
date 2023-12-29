@@ -2,15 +2,9 @@
 import styles from "./Hero.module.scss";
 // next image
 import Image from "next/image";
-// components
-import Navabr from "../Navbar/Navbar";
-
 // files
 import hbg from "../../../public/Images/myeshophero.jpeg";
 import mhbg from "../../../public/Images/myeshophero-mobile.jpeg";
-//icons
-import User from "@/Icons/User";
-import Cart from "@/Icons/Cart";
 
 let Hero = () => {
     return (

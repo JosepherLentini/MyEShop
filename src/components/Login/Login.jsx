@@ -6,9 +6,9 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
+import { doc, setDoc} from "firebase/firestore";
 // hooks & react
-import { useReducer, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 //styles
 import styles from "./Login.module.scss";
@@ -95,12 +95,6 @@ const Login = () => {
     });
   }, []);
 
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {})
-      .catch((error) => console.log(error));
-  };
-
   return (
     <>
       <div className={`${styles.Login}`}>
@@ -158,7 +152,7 @@ const Login = () => {
               className={styles.sign_input}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <input type="submit" value="click" className={styles.signSubmit} />
+            <input type="submit" value="Sign-up" className={styles.signSubmit} />
           </form>
           {errorSignModal && <ErrorLoginModal />}
         </div>
