@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "./CartItem.module.scss";
 //icons
-import Delete from "@/Icons/Delete";
 import Garbage from "@/Icons/Garbage";
 // firebase
-import { db, auth } from "@/firebase";
-import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
+import { db} from "@/firebase";
+import { doc, updateDoc} from "firebase/firestore";
 
-const CartItem = ({ prod, cartList, setCartList }) => {
+const CartItem = ({ prod, cartList }) => {
   const addQuantity = (event, el) => {
     let uuid = localStorage.getItem("user");
     let operator = event.target.innerText;
@@ -83,8 +82,4 @@ const CartItem = ({ prod, cartList, setCartList }) => {
 
 export default CartItem;
 
-// setCartList(
-//   cartList.map((item) =>
-//     item.id === el.id ? { ...item, quantity: item.quantity + 1 } : item
-//   )
-// );
+

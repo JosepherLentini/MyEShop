@@ -1,15 +1,9 @@
 import styles from "./Card.module.scss";
 //hooks
-import { useState, useEffect, useRef, useContext } from "react";
-//next
-import Image from "next/image";
-//global state settings
-import { useReducer } from "react";
-import { userReducer } from "@/global state/reducers";
-import { UserContext, initialUserState } from "@/global state/products-state";
+import { useState, useRef} from "react";
 //firebase
-import { db, auth } from "@/firebase";
-import { doc, setDoc, updateDoc, getDoc, collection } from "firebase/firestore";
+import { db } from "@/firebase";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 //
 import { useRouter } from "next/router";
 

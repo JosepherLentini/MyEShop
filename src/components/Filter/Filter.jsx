@@ -47,7 +47,6 @@ const Filter = ({ data, items, setItems, setShow }) => {
 
   const handleClick = (cat, index) => {
     setActiveAll(false);
-    console.log(cat);
     setActiveCategory(cat);
 
     let categoryValue = cat;

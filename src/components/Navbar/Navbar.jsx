@@ -29,7 +29,7 @@ const Navbar = ({ cartList, setCartList }) => {
   const handleLogOut = () => {
     signOut(auth)
       .then(() => {
-        console.log("sucessfully logged out");
+       
       })
       .catch((e) => console.log(e));
   };
@@ -75,7 +75,7 @@ const Navbar = ({ cartList, setCartList }) => {
   };
 
   return (
-    <div className={styles.Navbar} onClick={(e) => console.log(e)}>
+    <div className={styles.Navbar}>
       <ul>
         <li onClick={() => router.push("/")}>
           <Image src={logo} alt="MyeShop__logo" className={styles.Navbar_logo} />

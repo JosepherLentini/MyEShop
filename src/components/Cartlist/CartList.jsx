@@ -1,5 +1,4 @@
 import styles from "./CartList.module.scss";
-import { useState } from "react";
 import React from "react";
 import CartItem from "../CartItem";
 
