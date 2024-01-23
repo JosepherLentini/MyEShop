@@ -1,14 +1,15 @@
 import styles from "./Card.module.scss";
 //hooks
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect} from "react";
 //firebase
-import { db } from "@/firebase";
+import { db, auth } from "@/firebase";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 //
 import { useRouter } from "next/router";
 
 const Card = ({ data, setNoLoggedMessage }) => {
   const [rotateCard, setRotateCard] = useState(false);
+  const [cartList, setCartList] = useState([]);
 
   const router = useRouter();
   const seeMoreRef = useRef(null);
@@ -37,44 +38,76 @@ const Card = ({ data, setNoLoggedMessage }) => {
       e.target.innerText.toLowerCase() !== ref3.current.innerText.toLowerCase()
     ) {
       router.push(`/product/${data.id}`);
-      console.log("beppe")
+     
     } else {
     }
   };
 
   const addItemToDb = async (el) => {
-    let uuid = localStorage.getItem("user");
+    
 
-    const docRef = doc(db, "cart", `${uuid}`);
-    const docSnap = await getDoc(docRef);
-    let ob;
+    const user = auth.currentUser;
 
-    if (docSnap.exists()) {
-      ob = docSnap.data().cart;
+    if (user) {
+      let uuid = localStorage.getItem("user");
 
-      let itemExist = ob.find((item) => item.id === el.id);
-      if (itemExist) {
-        let ab = ob.map((item) =>
-          item.id === el.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-        updateDoc(doc(db, "cart", `${uuid}`), {
-          cart: [...ab],
-        });
-      } else {
-        let ab;
-        ab = [...ob, { ...el, quantity: 1 }];
-        updateDoc(doc(db, "cart", `${uuid}`), {
-          cart: [...ab],
-        });
-      }
+      const docRef = doc(db, "cart", `${uuid}`);
+      const docSnap = await getDoc(docRef);
+      let ob;
+
+      
+  if (docSnap.exists()) {
+    ob = docSnap.data().cart;
+
+    let itemExist = ob.find((item) => item.id === el.id);
+    if (itemExist) {
+      let ab = ob.map((item) =>
+        item.id === el.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      updateDoc(doc(db, "cart", `${uuid}`), {
+        cart: [...ab],
+      });
     } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+      let ab;
+      ab = [...ob, { ...el, quantity: 1 }];
+      updateDoc(doc(db, "cart", `${uuid}`), {
+        cart: [...ab],
+      });
+    }
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+    
+  }
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      // ...
+      console.log("ci sono")
+    } else {
+      // No user is signed in.
+      console.log("non ci sono")
       setNoLoggedMessage(true);
     }
   };
 
-  
+    useEffect(() => {
+      const user = auth.currentUser;
+      if (user) {
+        const addCart = async () => {
+          let uuid = localStorage.getItem("user");
+          const docRef = doc(db, "cart", `${uuid}`);
+          const docSnap = await getDoc(docRef);
+          let ob;
+
+          if (docSnap.exists()) {
+            let cL = docSnap.data().cart;
+            setCartList(cL);
+          }
+        };
+        addCart();
+      }
+    }, [cartList]);
+
 
   return (
     <div

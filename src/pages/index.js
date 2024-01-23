@@ -10,8 +10,9 @@ import Info from "@/components/Info";
 // layouts
 import NavbarLayout from "@/layouts/NavbarLayout";
 // firebase
-import { db } from "@/firebase";
+import { db, auth } from "@/firebase";
 import { doc, getDoc, } from "firebase/firestore";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,23 +25,66 @@ export default function Home() {
 
 
   useEffect(() => {
-    const addCart = async () => {
-      let uuid = localStorage.getItem("user");
-      const docRef = doc(db, "cart", `${uuid}`);
-      const docSnap = await getDoc(docRef);
-      let ob;
+    // const addCart = async () => {
+    //   let uuid = localStorage.getItem("user");
+    //   const docRef = doc(db, "cart", `${uuid}`);
+    //   const docSnap = await getDoc(docRef);
+    //   let ob;
       
-      if (docSnap.exists()) {
-        let cL = docSnap.data().cart;
-        setCartList(cL);
-      } else {
-        // console.log("No such document!");
-      }
-    };
-    addCart()
+    //   if (docSnap.exists()) {
+    //     let cL = docSnap.data().cart;
+    //     setCartList(cL);
+    //   } else {
+    //     // console.log("No such document!");
+    //   }
+    // };
+    
+
+    // addCart()
   },[cartList]);
 
 
+  useEffect(() => {
+      // onAuthStateChanged(auth, (user) => {
+      //   if (user) {
+      //     // User is signed in, see docs for a list of available properties
+      //     // https://firebase.google.com/docs/reference/js/auth.user
+      //     const uid = user.uid;
+      //     console.log("ci sono");
+      //     // ...
+      //   } else {
+      //     // User is signed out
+      //     // ...
+      //     console.log("non ci sono");
+      //   }
+      // });
+      const user = auth.currentUser;
+       if (user) {
+         // User is signed in, see docs for a list of available properties
+         // https://firebase.google.com/docs/reference/js/auth.user
+         // ...
+        
+          const addCart = async () => {
+            let uuid = localStorage.getItem("user");
+            const docRef = doc(db, "cart", `${uuid}`);
+            const docSnap = await getDoc(docRef);
+            let ob;
+
+            if (docSnap.exists()) {
+              let cL = docSnap.data().cart;
+              setCartList(cL);
+            } else {
+              // console.log("No such document!");
+            }
+          };
+
+          addCart();
+       } else {
+         // No user is signed in.
+         
+       }
+
+      },[cartList])
 
   return (
     <>
