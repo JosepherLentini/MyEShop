@@ -39,6 +39,7 @@ const Products = ({
   return (
     <>
       <div className={styles.Products}>
+        
         {noLoggedMessage && (
           <LoggedMessage setNoLoggedMessage={setNoLoggedMessage} />
         )}

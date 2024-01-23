@@ -23,9 +23,9 @@ const ProductPage = () => {
 
   let router = useRouter();
 
-    const addItemToDb = async (el) => {
-
-      
+  const addItemToDb = async (el) => {
+    const user = auth.currentUser;
+    if (user) {
       let uuid = localStorage.getItem("user");
 
       const docRef = doc(db, "cart", `${uuid}`);
@@ -38,7 +38,9 @@ const ProductPage = () => {
         let itemExist = ob.find((item) => item.id === el.id);
         if (itemExist) {
           let ab = ob.map((item) =>
-            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
           );
           updateDoc(doc(db, "cart", `${uuid}`), {
             cart: [...ab],
@@ -50,12 +52,13 @@ const ProductPage = () => {
             cart: [...ab],
           });
         }
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
-        setNoLoggedMessage(true);
       }
-    };
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+      setNoLoggedMessage(true);
+    }
+  };
 
   useEffect(() => {
     if (router.isReady) {
@@ -70,18 +73,21 @@ const ProductPage = () => {
   }, [router.isReady]);
 
   useEffect(() => {
-    const addCart = async () => {
-      let uuid = localStorage.getItem("user");
-      const docRef = doc(db, "cart", `${uuid}`);
-      const docSnap = await getDoc(docRef);
-      let ob;
+    const user = auth.currentUser;
+    if (user) {
+      const addCart = async () => {
+        let uuid = localStorage.getItem("user");
+        const docRef = doc(db, "cart", `${uuid}`);
+        const docSnap = await getDoc(docRef);
+        let ob;
 
-      if (docSnap.exists()) {
-        let cL = docSnap.data().cart;
-        setCartList(cL);
-      } 
-    } 
-    addCart();
+        if (docSnap.exists()) {
+          let cL = docSnap.data().cart;
+          setCartList(cL);
+        }
+      };
+      addCart();
+    }
   }, [cartList]);
 
   return (
